@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Entry</title>
+    <style>
+        body {
+            font-family: monospace;
+            margin: 20px;
+        }
+        #content {
+            white-space: pre-wrap; /* Preserve whitespace */
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div id="content">Loading...</div>
+
+<script>
+    fetch('0.md')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('content').textContent = data;
+        })
+        .catch(error => {
+            document.getElementById('content').textContent = 'Error: ' + error.message;
+        });
+</script>
+
+</body>
+</html>
